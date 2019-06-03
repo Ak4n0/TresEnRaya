@@ -336,7 +336,7 @@ public class Tablero extends javax.swing.JFrame {
      */
     public void jugada() {
         figuras[y][x].setIcon(jugador? JUGADOR_1 : JUGADOR_2);
-        
+        // La siguiente instrucción debe estar antes de compruebaGanador()
         jugador = !jugador;
         compruebaGanador();
     }
@@ -344,6 +344,7 @@ public class Tablero extends javax.swing.JFrame {
     // Informa del jugador que ha ganado la partida, si lo hay, o del empate en caso contrario
     public void huboGanador(boolean opcion) {
         if(opcion)
+            // jugador está negado porque en este momento ya marca el oponente
             JOptionPane.showMessageDialog(null, "Ganó el jugador " + (!jugador? 1 : 2), "Ganador", JOptionPane.PLAIN_MESSAGE);
         else
             JOptionPane.showMessageDialog(null, "No hubo ganador", "Empate", JOptionPane.PLAIN_MESSAGE);
