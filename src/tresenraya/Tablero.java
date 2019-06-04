@@ -13,13 +13,13 @@ import javax.swing.JPanel;
  */
 public class Tablero extends javax.swing.JFrame {
 
-    private final int DIMENSION = 3;
-    private final Color COLOR;
-    private boolean jugador;
+    private int turno = 1;
     private int x, y;
     private int casillasMarcadas;
-    private JLabel[][] figuras = new JLabel[DIMENSION][DIMENSION];
-    private JPanel[][] casillas = new JPanel[DIMENSION][DIMENSION];
+    private final int DIMENSION = 3;
+    private final Color COLOR = new Color(255, 125, 125);;
+    private final JLabel[][] FIGURAS = new JLabel[DIMENSION][DIMENSION];
+    private final JPanel[][] CASILLAS = new JPanel[DIMENSION][DIMENSION];
     private final Icon JUGADOR_1 = new ImageIcon("imagenes/O.png");
     private final Icon JUGADOR_2 = new ImageIcon("imagenes/X.png");
     
@@ -29,26 +29,25 @@ public class Tablero extends javax.swing.JFrame {
     public Tablero() {
         initComponents();
         
-        COLOR = new Color(255, 125, 125);
-        figuras[0][0] = lblFig1;
-        figuras[0][1] = lblFig2;
-        figuras[0][2] = lblFig3;
-        figuras[1][0] = lblFig4;
-        figuras[1][1] = lblFig5;
-        figuras[1][2] = lblFig6;
-        figuras[2][0] = lblFig7;
-        figuras[2][1] = lblFig8;
-        figuras[2][2] = lblFig9;
+        FIGURAS[0][0] = lblFig1;
+        FIGURAS[0][1] = lblFig2;
+        FIGURAS[0][2] = lblFig3;
+        FIGURAS[1][0] = lblFig4;
+        FIGURAS[1][1] = lblFig5;
+        FIGURAS[1][2] = lblFig6;
+        FIGURAS[2][0] = lblFig7;
+        FIGURAS[2][1] = lblFig8;
+        FIGURAS[2][2] = lblFig9;
         
-        casillas[0][0] = casilla1;
-        casillas[0][1] = casilla2;
-        casillas[0][2] = casilla3;
-        casillas[1][0] = casilla4;
-        casillas[1][1] = casilla5;
-        casillas[1][2] = casilla6;
-        casillas[2][0] = casilla7;
-        casillas[2][1] = casilla8;
-        casillas[2][2] = casilla9;
+        CASILLAS[0][0] = casilla1;
+        CASILLAS[0][1] = casilla2;
+        CASILLAS[0][2] = casilla3;
+        CASILLAS[1][0] = casilla4;
+        CASILLAS[1][1] = casilla5;
+        CASILLAS[1][2] = casilla6;
+        CASILLAS[2][0] = casilla7;
+        CASILLAS[2][1] = casilla8;
+        CASILLAS[2][2] = casilla9;
         
         resetea();
     }
@@ -236,63 +235,63 @@ public class Tablero extends javax.swing.JFrame {
     private void casilla1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla1MouseClicked
         y = 0;
         x = 0;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla1MouseClicked
 
     private void casilla2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla2MouseClicked
         y = 0;
         x = 1;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla2MouseClicked
 
     private void casilla3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla3MouseClicked
         y = 0;
         x = 2;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla3MouseClicked
 
     private void casilla4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla4MouseClicked
         y = 1;
         x = 0;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla4MouseClicked
 
     private void casilla5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla5MouseClicked
         y = 1;
         x = 1;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla5MouseClicked
 
     private void casilla6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla6MouseClicked
         y = 1;
         x = 2;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla6MouseClicked
 
     private void casilla7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla7MouseClicked
         y = 2;
         x = 0;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla7MouseClicked
 
     private void casilla8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla8MouseClicked
         y = 2;
         x = 1;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();
     }//GEN-LAST:event_casilla8MouseClicked
 
     private void casilla9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casilla9MouseClicked
         y = 2;
         x = 2;
-        if(figuras[y][x].getIcon() == null)
+        if(FIGURAS[y][x].getIcon() == null)
             jugada();        
     }//GEN-LAST:event_casilla9MouseClicked
 
@@ -332,20 +331,32 @@ public class Tablero extends javax.swing.JFrame {
     }
     
     /**
-     * Realiza una jugada colocando la figura en la casilla del jugador en posesión del turno.
+     * Cambia el turno al otro jugador
      */
-    public void jugada() {
-        figuras[y][x].setIcon(jugador? JUGADOR_1 : JUGADOR_2);
-        // La siguiente instrucción debe estar antes de compruebaGanador()
-        jugador = !jugador;
-        compruebaGanador();
+    private void cambioTurno() {
+        turno++;
+        if(turno > 2)
+            turno = 1;
     }
     
-    // Informa del jugador que ha ganado la partida, si lo hay, o del empate en caso contrario
-    public void huboGanador(boolean opcion) {
+    /**
+     * Realiza una jugada colocando la figura en la casilla del jugador en posesión del turno.
+     */
+    private void jugada() {
+        FIGURAS[y][x].setIcon(turno == 1? JUGADOR_1 : JUGADOR_2);
+        // La siguiente instrucción debe estar antes de compruebaGanador()
+        
+        if(!compruebaGanador())
+            cambioTurno();
+    }
+    
+    /**
+     * Informa del jugador que ha ganado la partida, si lo hay, o del empate en caso contrario
+     */
+    private void huboGanador(boolean opcion) {
         if(opcion)
             // jugador está negado porque en este momento ya marca el oponente
-            JOptionPane.showMessageDialog(null, "Ganó el jugador " + (!jugador? 1 : 2), "Ganador", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ganó el jugador " + turno, "Ganador", JOptionPane.PLAIN_MESSAGE);
         else
             JOptionPane.showMessageDialog(null, "No hubo ganador", "Empate", JOptionPane.PLAIN_MESSAGE);
         resetea();
@@ -353,87 +364,90 @@ public class Tablero extends javax.swing.JFrame {
     
     /**
      * Comprueba si el jugador ha ganado la partida
+     * @return Devuelve true si hubo ganador en la partida
      */
-    public void compruebaGanador() {
-        Icon valor = figuras[y][x].getIcon();
+    private boolean compruebaGanador() {
+        Icon valor = FIGURAS[y][x].getIcon();
         int resultado;
         casillasMarcadas++;
         
         // Columna
         resultado = 0;
-        for(int i = 0; i < figuras.length; ++i) {
-            if(figuras[i][x].getIcon() != null && figuras[i][x].getIcon().equals(valor))
+        for(int i = 0; i < FIGURAS.length; ++i) {
+            if(FIGURAS[i][x].getIcon() != null && FIGURAS[i][x].getIcon().equals(valor))
                 resultado++;
         }
         
-        if(resultado == figuras.length) {
-            for(int i = 0; i < figuras.length; ++i) {
-                casillas[i][x].setBackground(COLOR);
+        if(resultado == FIGURAS.length) {
+            for(int i = 0; i < FIGURAS.length; ++i) {
+                CASILLAS[i][x].setBackground(COLOR);
             }
             huboGanador(true);
-            return;
+            return true;
         }
         
         // Fila
         resultado = 0;
-        for(int i = 0; i < figuras.length; ++i) {
-            if(figuras[y][i].getIcon() != null && figuras[y][i].getIcon().equals(valor))
+        for(int i = 0; i < FIGURAS.length; ++i) {
+            if(FIGURAS[y][i].getIcon() != null && FIGURAS[y][i].getIcon().equals(valor))
                 resultado++;
         }
         
-        if(resultado == figuras.length) {
-            for(int i = 0; i < figuras.length; ++i) {
-                casillas[y][i].setBackground(COLOR);
+        if(resultado == FIGURAS.length) {
+            for(int i = 0; i < FIGURAS.length; ++i) {
+                CASILLAS[y][i].setBackground(COLOR);
             }
             huboGanador(true);
-            return;
+            return true;
         }
         
         // Diagonal principal
         resultado = 0;
-        for(int i = 0; i < figuras.length; ++i) {
-            if(figuras[i][i].getIcon() != null && figuras[i][i].getIcon().equals(valor))
+        for(int i = 0; i < FIGURAS.length; ++i) {
+            if(FIGURAS[i][i].getIcon() != null && FIGURAS[i][i].getIcon().equals(valor))
                 resultado++;
         }
         
-        if(resultado == figuras.length) {
-            for(int i = 0; i < figuras.length; ++i) {
-                casillas[i][i].setBackground(COLOR);
+        if(resultado == FIGURAS.length) {
+            for(int i = 0; i < FIGURAS.length; ++i) {
+                CASILLAS[i][i].setBackground(COLOR);
             }
             huboGanador(true);
-            return;
+            return true;
         }
         
         // Diagonal inversa
         resultado = 0;
-        for(int i = 0; i < figuras.length; ++i) {
-            if(figuras[i][figuras.length-1-i].getIcon() != null && figuras[i][figuras.length-1-i].getIcon().equals(valor))
+        for(int i = 0; i < FIGURAS.length; ++i) {
+            if(FIGURAS[i][FIGURAS.length-1-i].getIcon() != null && FIGURAS[i][FIGURAS.length-1-i].getIcon().equals(valor))
                 resultado++;
         }
         
-        if(resultado == figuras.length) {
-            for(int i = 0; i < figuras.length; ++i) {
-                casillas[i][figuras.length-1-i].setBackground(COLOR);
+        if(resultado == FIGURAS.length) {
+            for(int i = 0; i < FIGURAS.length; ++i) {
+                CASILLAS[i][FIGURAS.length-1-i].setBackground(COLOR);
             }
             huboGanador(true);
-            return;
+            return true;
         }
         
-        if(casillasMarcadas == figuras.length * figuras.length) {
+        if(casillasMarcadas == FIGURAS.length * FIGURAS.length) {
             huboGanador(false);
         }
+        
+        return false;
             
     }
     
     private void resetea() {
-        for(int i = 0; i < figuras.length; ++i)
-            for(int j = 0; j < figuras[i].length; ++j) {
-                figuras[i][j].setIcon(null);
-                casillas[i][j].setBackground(Color.WHITE);
+        for(int i = 0; i < FIGURAS.length; ++i)
+            for(int j = 0; j < FIGURAS[i].length; ++j) {
+                FIGURAS[i][j].setIcon(null);
+                CASILLAS[i][j].setBackground(Color.WHITE);
             }
         
         casillasMarcadas = 0;
-        jugador = true;
+        turno = 1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
