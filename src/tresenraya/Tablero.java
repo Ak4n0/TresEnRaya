@@ -351,7 +351,8 @@ public class Tablero extends javax.swing.JFrame {
     }
     
     /**
-     * Informa del jugador que ha ganado la partida, si lo hay, o del empate en caso contrario
+     * Informa del jugador que ha ganado la partida, si lo hay, o del empate en caso contrario.
+     * @param opcion Se le pasa true si un jugador ganó la partida, false en caso de empate.
      */
     private void huboGanador(boolean opcion) {
         if(opcion)
@@ -363,8 +364,8 @@ public class Tablero extends javax.swing.JFrame {
     }
     
     /**
-     * Comprueba si el jugador ha ganado la partida
-     * @return Devuelve true si hubo ganador en la partida
+     * Comprueba si el jugador ha ganado la partida.
+     * @return Devuelve true si hubo ganador en la partida.
      */
     private boolean compruebaGanador() {
         Icon valor = FIGURAS[y][x].getIcon();
@@ -439,6 +440,9 @@ public class Tablero extends javax.swing.JFrame {
             
     }
     
+    /**
+     * Deja el tablero listo para empezar una partida nueva.
+     */
     private void resetea() {
         for(int i = 0; i < FIGURAS.length; ++i)
             for(int j = 0; j < FIGURAS[i].length; ++j) {
